@@ -13,9 +13,13 @@ class RCombination
 {
 public:
     RCombination(QString combination_lineEdit, QString r_lineEdit);
-    static int F(int n, int r);
+
 
     long calculate();
+
+private:
+    int F(int n, int r);
+    int calACombination(const Node (&set)[], const int &setNum, int start, int r, int count);
 
 private:
     QString combinationStr;
