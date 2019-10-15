@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "RCombination.h"
 
 namespace Ui {
 class MainWindow;
@@ -15,11 +16,13 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    slots
+public slots:
     void onClickedSubmit();
 
 private:
     Ui::MainWindow *ui;
+
+    RCombination *myObj;
 };
 
 #endif // MAINWINDOW_H

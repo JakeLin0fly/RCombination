@@ -13,10 +13,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->r_lable->setText(QString("组合数r"));
     ui->answer->setText(QString(""));
 
-    connect(ui->calculate, SIGNAL(triggered()), this, SLOT(onClickedSubmit));
+    connect(ui->calculate, SIGNAL(clicked()), this, SLOT(onClickedSubmit()));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+
+void MainWindow::onClickedSubmit(){
+    myObj = new RCombination(ui->combination_lineEdit->text(), ui->r_lineEdit->text());
 }
