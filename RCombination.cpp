@@ -1,5 +1,4 @@
 #include "RCombination.h"
-#include <string>
 #include <QStringList>
 #include <QDebug>
 /**
@@ -14,16 +13,22 @@ RCombination::RCombination(QString combination_lineEdit, QString r_lineEdit){
     qDebug() << "r = "<<rValue;
 
     //以 ','分割字符串   不计空窜（连续两个','）
-    //1*ad,68*as,8*a2
     //4*a1,3*a2,4*a3,5*a4
     QStringList list = combinationStr.split(',', QString::SkipEmptyParts);
     setNum = 0;
+    //正则匹配输入格式  ^[0-9]+\*[A-Za-z0-9]+
+    QRegExp rx(QString("^[0-9]+[*][A-Za-z0-9_]{1,}$"));
     foreach(QString s, list){
+        qDebug()<<s;
+        if(!rx.exactMatch(s)){
+            answer = -1;
+            return;
+        }
         int key = s.indexOf('*');
         set[setNum].k_i = s.left(key).toInt();
         set[setNum].a_i = s.right(s.length() - key - 1);
 
-        qDebug() << "set[" << setNum << "]: "<< set[setNum].k_i << " " << set[setNum].a_i;
+//        qDebug() << "set[" << setNum << "]: "<< set[setNum].k_i << " " << set[setNum].a_i;
 
         setNum += 1;
     }
@@ -44,7 +49,6 @@ long long RCombination::F(int n, int r){
     long long molecule = 1;   //分子
     long long denominator = 1;    //分母
     while(k > 0){
-        qDebug()<<max_num<<"-------"<<k;
         molecule *= max_num;
         max_num -= 1;
         denominator *= k;

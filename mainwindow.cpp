@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QChar>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -23,9 +24,21 @@ MainWindow::~MainWindow()
 
 
 void MainWindow::onClickedSubmit(){
-    myObj = new RCombination(ui->combination_lineEdit->text(), ui->r_lineEdit->text());
+    //组合数r 输入验证
+    QString rString = ui->r_lineEdit->text();
+    foreach (QChar c, rString) {
+        if(c < '0' || c > '9'){
+            QMessageBox::warning(this, QString("错误"), QString("数字r输入错误！请重新输入."),QMessageBox::Ok);
+            return;
+        }
+    }
+    myObj = new RCombination(ui->combination_lineEdit->text(), rString);
+    if(-1 == myObj->getAnswer()){
+        QMessageBox::warning(this, QString("错误"), QString("集合字符串输入错误！请重新输入."),QMessageBox::Ok);
+    }else {
+        long long sum = myObj->calculate();
+        //    ui->answer->setText();
+    }
 
-    long sum = myObj->calculate();
-
-//    ui->answer->setText();
+    delete myObj;
 }

@@ -13,7 +13,7 @@ class RCombination
 {
 public:
     RCombination(QString combination_lineEdit, QString r_lineEdit);
-
+    long long getAnswer() { return answer;}
 
     long long calculate();
 
