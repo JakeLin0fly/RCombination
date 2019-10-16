@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setFixedSize(550, 350);
+    setWindowTitle(QString("组合数学"));
 
     ui->title_label->setText(QString("容斥原理-重集的r-组合"));
     ui->combination_lineEdit->setPlaceholderText(QString("集合序列"));

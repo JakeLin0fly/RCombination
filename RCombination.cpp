@@ -10,16 +10,14 @@ RCombination::RCombination(QString combination_lineEdit, QString r_lineEdit){
     combinationStr = combination_lineEdit;
     rValue = r_lineEdit.toInt();
 
-    qDebug() << "r = "<<rValue;
-
     //以 ','分割字符串   不计空窜（连续两个','）
-    //4*a1,3*a2,4*a3,5*a4
+    //4*a1,3*a2,4*a3,5*a4     34
+    //3*a1,7*a2,2*a3,15*a4     96
     QStringList list = combinationStr.split(',', QString::SkipEmptyParts);
     setNum = 0;
     //正则匹配输入格式  ^[0-9]+\*[A-Za-z0-9]+
     QRegExp rx(QString("^[0-9]+[*][A-Za-z0-9_]{1,}$"));
     foreach(QString s, list){
-        qDebug()<<s;
         if(!rx.exactMatch(s)){
             answer = -1;
             return;
@@ -27,8 +25,6 @@ RCombination::RCombination(QString combination_lineEdit, QString r_lineEdit){
         int key = s.indexOf('*');
         set[setNum].k_i = s.left(key).toInt();
         set[setNum].a_i = s.right(s.length() - key - 1);
-
-//        qDebug() << "set[" << setNum << "]: "<< set[setNum].k_i << " " << set[setNum].a_i;
 
         setNum += 1;
     }
@@ -54,7 +50,6 @@ long long RCombination::F(int n, int r){
         denominator *= k;
         k -= 1;
     }
-qDebug()<<"F("<<n<<", "<<r<<") = "<<molecule / denominator;
     return molecule / denominator;
 }
 
@@ -68,7 +63,6 @@ long long RCombination::calculate(){
         answer += key * calACombination(set, setNum, 0, rValue, count);
         key *= -1;
     }
-    qDebug()<<"answer = " << answer;
     return answer;
 }
 

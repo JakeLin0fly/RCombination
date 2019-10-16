@@ -71,10 +71,16 @@ QLabel{
 }
 
 /****************标题栏**********************/
-QLabel#title_label,QLabel#answer{
+QLabel#title_label{
     font-size: 26px;
     font-weight: bold;
     font-style:center;
+}
+QLabel#answer{
+    font-size: 40px;
+    font-weight: bold;
+    font-style:center;
+    color:red
 }
 
 QLabel#combination_label,QLabel#r_label{
