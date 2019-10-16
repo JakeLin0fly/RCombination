@@ -36,20 +36,21 @@ RCombination::RCombination(QString combination_lineEdit, QString r_lineEdit){
  * @param r
  * @return
  */
-int RCombination::F(int n, int r){
+long long RCombination::F(int n, int r){
     if(r < 0)
         return 0;
     int max_num = n + r -1;
     int k = r;
-    int molecule = 1;   //分子
-    int denominator = 1;    //分母
+    long long molecule = 1;   //分子
+    long long denominator = 1;    //分母
     while(k > 0){
+        qDebug()<<max_num<<"-------"<<k;
         molecule *= max_num;
         max_num -= 1;
         denominator *= k;
         k -= 1;
     }
-
+qDebug()<<"F("<<n<<", "<<r<<") = "<<molecule / denominator;
     return molecule / denominator;
 }
 
@@ -57,9 +58,13 @@ int RCombination::F(int n, int r){
  * @brief 容斥原理计算 r-组合 计数
  * @return
  */
-long RCombination::calculate(){
-    answer = RCombination::F(setNum, rValue);   // 首先计算 |S|
-
+long long RCombination::calculate(){
+    answer = F(setNum, rValue);   // 首先计算 |S|
+    for (int count = 1, key = -1; count <= setNum; count += 1) {
+        answer += key * calACombination(set, setNum, 0, rValue, count);
+        key *= -1;
+    }
+    qDebug()<<"answer = " << answer;
     return answer;
 }
 
@@ -72,21 +77,21 @@ long RCombination::calculate(){
  * @param count  计数的Ai个数
  * @return
  */
-int RCombination::calACombination(const Node (&set)[], const int &setNum, int start, int r, int count){
+long long RCombination::calACombination(const Node (&set)[50], const int &setNum, int start, int r, int count){
     if(r < 0 || count <= 0)
         return 0;
     if(setNum - start < count)  //set[start...end] 个数 < count
         return 0;
 
-    int sum = 0;
+    long long sum = 0;
     int end = setNum - count;    //保证能选count个Ai的最大下标
     count -= 1;
     for(int index = start; index <= end; index+=1){
         if(count > 0){
-            sum += calACombination(set, setNum, index+1, r-set[index].k_i, count);
+            sum += calACombination(set, setNum, index+1, r-set[index].k_i-1, count);
         }
         else {
-            sum += F(setNum, r-set[index].k_i);
+            sum += F(setNum, r-set[index].k_i-1);
         }
     }
 

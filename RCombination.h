@@ -15,11 +15,11 @@ public:
     RCombination(QString combination_lineEdit, QString r_lineEdit);
 
 
-    long calculate();
+    long long calculate();
 
 private:
-    int F(int n, int r);
-    int calACombination(const Node (&set)[], const int &setNum, int start, int r, int count);
+    long long F(int n, int r);
+    long long calACombination(const Node (&set)[50], const int &setNum, int start, int r, int count);
 
 private:
     QString combinationStr;
@@ -28,7 +28,7 @@ private:
     int setNum = 0;
     Node set[50];
 
-    long answer = 0;
+    long long answer = 0;
 
 };
 

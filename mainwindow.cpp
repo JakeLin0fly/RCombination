@@ -24,4 +24,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::onClickedSubmit(){
     myObj = new RCombination(ui->combination_lineEdit->text(), ui->r_lineEdit->text());
+
+    long sum = myObj->calculate();
+
+//    ui->answer->setText();
 }
