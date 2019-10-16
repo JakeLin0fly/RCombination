@@ -1,0 +1,88 @@
+/****************主界面背景*******************/
+QMainWindow{
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #DBDBDB, stop:1 #969696);
+    padding: 0px;
+/*    border-radius: 5px;*/
+    margin: 0px;
+    color: #FCFCFC;
+}
+QMainWindow#titleWidget{
+    border-bottom: 1px solid #ADD8E6;
+}
+
+/****************按钮部件*******************/
+QPushButton{
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4D4D4D, stop:1 #292929);
+    width:10em;
+    height:2em;
+    margin-top:0px;
+    border-width: 4px;  /*边框宽度为4像素*/
+    border-radius: 10px; /*边框圆角半径*/
+    border-color: rgba(255, 225, 255, 100);/*边框颜色*/
+    font: bold 16px;/*字体*/
+    color: #F0F0F0;/*color:rgba(0, 0, 0, 150);*/   /*字体颜色*/
+    padding: 6px; /*填衬*/
+}
+
+
+QPushButton:hover{
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #636363, stop:1 #575757);
+}
+
+QPushButton:pressed{
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4D4D4D, stop:1 #292929);
+}
+
+
+
+
+/*******************输入框*******************/
+QLineEdit
+{
+    font: 16px;
+    font-family: Times New Roman;
+    background:white;
+    padding-left:1px ;
+    padding-top:1px ;
+    height:2em;
+    width:3em;
+    border-radius:5px;
+/*    border-bottom-left-radius:3px;
+    border-bottom-right-radius:3px;*/
+
+    border: 1px solid rgb(209 , 209 , 209);
+    border-top:transparent;
+}
+QLineEdit:hover
+{
+    padding-top:0px ;
+    border: 1px solid rgb(21 , 131 , 221);
+}
+
+
+/************标签样式*********/
+
+QLabel{
+/*    color:#333333;*/
+    background:transparent;
+    font-family:Microsoft YaHei;
+    font-size:18px;
+    height:2.5em;
+}
+
+/****************标题栏**********************/
+QLabel#title_label,QLabel#answer{
+    font-size: 26px;
+    font-weight: bold;
+    font-style:center;
+}
+
+QLabel#combination_label,QLabel#r_label{
+    font-size: 14px;
+    font-style: italic;
+}
+
+QLabel#label{
+    font-size: 20px;
+    font-weight: bold;
+}
